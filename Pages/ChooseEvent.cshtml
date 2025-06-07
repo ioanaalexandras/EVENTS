@@ -1,0 +1,35 @@
+@page
+@model ChooseEventModel
+@{
+    ViewData["Title"] = "Alege Evenimentul";
+}
+
+<div class="container mt-5">
+    <div class="form-wrapper text-center">
+        <h2>Alege evenimentul</h2>
+
+        <form method="post">
+            <div class="mb-3">
+                <select class="form-select" asp-for="SelectedEventTypeId" asp-items="Model.EventTypes">
+                    <option value="">-- Selectează un tip de eveniment --</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" asp-for="EventName" placeholder="Ex: Nunta Alexandra și George" />
+            </div>
+
+            <div class="mb-3">
+                <select asp-for="SelecteazaMoneda" class="form-select">
+                    <option value="">-- Alege moneda --</option>
+                    @foreach (var moneda in Model.Monede)
+                    {
+                        <option value="@moneda.Id">@moneda.Simbol - @moneda.Descriere</option>
+                    }
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-dark">Continuă</button>
+        </form>
+    </div>
+</div>

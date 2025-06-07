@@ -1,0 +1,80 @@
+@page
+@model AssignAccessModel
+@{
+    ViewData["Title"] = "Atribuire Acces";
+}
+
+<div class="access-wrapper">
+    <h2>🔐 Atribuie acces la un eveniment</h2>
+
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="alert alert-info text-center fw-semibold">@Model.StatusMessage</div>
+    }
+
+    <form method="post">
+        <div class="mb-4">
+            <label class="form-label">Alege eveniment:</label>
+            <select asp-for="SelectedEventId" class="form-select" required>
+                <option value="">-- Selectează un eveniment --</option>
+                @foreach (var ev in Model.MyEvents)
+                {
+                    <option value="@ev.Id">@ev.Description (@ev.StartDate?.ToString("dd MMM yyyy"))</option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">Email utilizator:</label>
+            <input asp-for="EmailToAssign" type="email" class="form-control" required />
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">Rol:</label>
+            <select asp-for="SelectedRole" class="form-select" required>
+                <option value="Manager">Manager</option>
+                <option value="Asistent">Asistent</option>
+            </select>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-access">
+                <i class="fas fa-user-plus me-1"></i> Atribuie Acces
+            </button>
+        </div>
+    </form>
+
+    @if (Model.AccessList.Any())
+    {
+        <hr class="my-4" />
+        <h5 class="mb-3">👥 Utilizatori care au deja acces</h5>
+        <div class="table-responsive">
+            <table class="table access-table">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Acțiune</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var access in Model.AccessList)
+                    {
+                        <tr>
+                            <td>@access.User.Email</td>
+                            <td>@access.Role</td>
+                            <td>
+                                <form method="post" asp-page-handler="DeleteAccess">
+                                    <input type="hidden" name="id" value="@access.Id" />
+                                    <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Sigur?')">
+                                        🗑 Revocă
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

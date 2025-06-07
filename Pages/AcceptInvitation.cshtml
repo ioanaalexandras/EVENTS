@@ -1,0 +1,15 @@
+@page
+@model RazorPagesEvents.Pages.AcceptInvitationModel
+@{
+    ViewData["Title"] = "Accepta invitatia";
+}
+
+<div class="container mt-5 text-center">
+    <h2 class="mb-4">Confirmare Invitatie</h2>
+
+    <div class="alert alert-info">
+        @Html.Raw(Model.Message)
+    </div>
+
+    <a class="btn btn-primary mt-3" href="/MyEvents">Mergi la evenimentele mele</a>
+</div>

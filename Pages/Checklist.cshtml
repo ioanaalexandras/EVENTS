@@ -1,0 +1,114 @@
+@page
+@model RazorPagesEvents.Pages.ChecklistModel
+@{
+    ViewData["Title"] = "Checklist";
+    var selectedCategory = Model.SelectedCategory;
+}
+
+<nav aria-label="breadcrumb" class="custom-breadcrumb ps-3 pt-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/"><i class="fas fa-home me-1"></i>Home</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-page="/MyEvents">My Events</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            @Model.EventName - Checklist
+        </li>
+    </ol>
+</nav>
+
+<div class="container-fluid checklist-container">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 border-end bg-light p-4 sidebar-scroll">
+            <h4 class="fw-bold">Checklist</h4>
+            <ul class="nav flex-column">
+                @foreach (var category in Model.AllCategories)
+                {
+                    var isActive = category == selectedCategory;
+                    <li class="nav-item mb-2">
+                        <a class="nav-link @(isActive ? "fw-bold text-primary" : "text-dark")"
+                           href="?eventId=@Model.EventId&SelectedCategory=@category">
+                            @category
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+        
+        <div class="col-md-9 p-4 sidebar-scroll">
+            <form method="post">
+                <input type="hidden" name="EventId" value="@Model.EventId" />
+                <input type="hidden" name="SelectedCategory" value="@Model.SelectedCategory" />
+
+                @if (Model.TotalCost > 0)
+                {
+                    <div class="alert alert-info text-center fw-bold">
+                        💰 Cost total estimativ: @Model.TotalCost.ToString("N2") @ViewData["MonedaSimbol"]
+                    </div>
+                }
+
+                @if (!string.IsNullOrEmpty(selectedCategory) && Model.TasksByCategory.ContainsKey(selectedCategory))
+                {
+                    <div class="mb-4">
+                        <!-- <h4 class="fw-bold border-bottom pb-2">@selectedCategory</h4>-->
+                        <div class="row row-cols-1 row-cols-md-2 g-3">
+                            @foreach (var task in Model.TasksByCategory[selectedCategory])
+                            {
+                                <div class="task-card border p-4 rounded-4 bg-white shadow-sm">
+                                    <div class="d-flex align-items-center">
+                                        <!-- Checkbox DONE -->
+                                        <input class="form-check-input me-2" type="checkbox" name="doneTaskIds" value="@task.Id"
+                                            @(task.Status?.Name == "Done" ? "checked" : "") />
+
+                                        <!-- Descriere -->
+                                        <label class="form-check-label flex-grow-1">
+                                            @task.Task.Description
+                                        </label>
+
+                                        <!-- Cost -->
+                                        <input type="number" name="CostValues" step="0.01" value="@(task.Cost?.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture) ?? "0")""
+                                            class="form-control ms-2 me-1" style="width: 100px;" />
+                                        <input type="hidden" name="CostTaskIds" value="@task.Id" />
+                                        <span class="text-muted">@ViewData["MonedaSimbol"]</span>
+                                    </div>
+
+                                    @if (Model.CanAssignRoles)
+                                    {
+                                        <!-- Dropdown + Buton Atribuie -->
+                                        <div class="mt-2 d-flex align-items-center gap-2 flex-wrap">
+                                            <select name="UserId_@task.Id" class="form-select form-select-sm" style="min-width: 200px;">
+                                                <option value="">Fără utilizator</option>
+                                                @foreach (var user in Model.EventUsersWithAccess)
+                                                {
+                                                    <option value="@user.UserId" selected="@(user.UserId == task.UserId)">
+                                                        @user.User.Email (@user.Role)
+                                                    </option>
+                                                }
+                                            </select>
+
+                                            <button type="submit" class="btn btn-sm btn-outline-primary"
+                                                    name="action" value="assign_@task.Id">
+                                                Atribuie
+                                            </button>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+
+                <!-- Butonul mare pentru salvarea statusurilor și costurilor -->
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary px-4 py-2" name="action" value="save">
+                        💾 Salvează modificările
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

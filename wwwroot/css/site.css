@@ -1,0 +1,322 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 20px 60px;
+  background: rgba(255, 255, 255, 0.6);
+  position: sticky;
+}
+
+.navbar-brand {
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #2c2c2c;
+  text-decoration: none;
+}
+
+.navbar-nav .nav-link {
+  text-decoration: none;
+  font-weight: 600;
+  font-family: 'Georgia', serif;
+  color: #2c2c2c !important;
+  padding: 6px 12px;
+  transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffb6c1 !important;/* roz pastel */
+}
+
+.nav-tabs .nav-link {
+  font-family: 'Playfair Display', serif; /* elegant */
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #5c5c5c;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.nav-tabs .nav-link:hover {
+  color: #ffb6c1;
+  border-bottom: 3px solid #ffcce5;
+}
+
+.nav-tabs .nav-link.active {
+  color: black;
+  border-bottom: 3px solid black;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 0;
+}
+
+a.btn-outline-dark {
+  color: #2c2c2c !important;
+  border-color: #2c2c2c !important;
+  text-decoration: none;
+}
+
+a.btn-outline-dark:hover{
+  color: #fff !important;
+  background-color: #2c2c2c;
+  border-color: #2c2c2c !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Georgia', serif;
+  color: #222;
+  background-image: url('/images/myevents.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  margin-bottom: 60px;
+}
+
+
+/* Pagina MyEvents */
+
+
+.progress {
+  background-color: #e9ecef;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background-color: #ffc107; /* galben pastel */
+  font-weight: bold;
+  color: #000;
+}
+.card-title {
+  font-family: 'Georgia', serif;
+  font-size: 1.2rem;
+}
+
+
+/* Stil pentru secțiuni tip card cu fundal transparent și margini rotunjite */
+.custom-card {
+  background: rgba(255, 255, 255, 0.5); /* semi-translucid */
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  backdrop-filter: blur(4px);
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.custom-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Stil pentru formularul de filtrare */
+.custom-filter-form {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e8e8e8;
+  backdrop-filter: blur(4px);
+}
+
+.btn i {
+  margin-right: 4px;
+}
+
+
+/* Pagina ChooseEvent
+
+
+/* Wrapper pentru formă */
+.form-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+}
+
+/* Titlu */
+.form-wrapper h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #2c2c2c;
+    margin-bottom: 30px;
+}
+
+/* Dropdown & input text */
+.form-wrapper .form-select,
+.form-wrapper .form-control {
+    font-size: 1.1rem;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-wrapper .form-select:focus,
+.form-wrapper .form-control:focus {
+    border-color: #ffb6c1;
+    box-shadow: 0 0 0 0.2rem rgba(255, 182, 193, 0.25);
+}
+
+/* Buton */
+.form-wrapper button {
+    background-color: #2c2c2c;
+    color: white;
+    padding: 10px 28px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.form-wrapper button:hover {
+    background-color: #444;
+}
+
+
+/* PAGINA CHECKLIST */
+
+.custom-breadcrumb .breadcrumb {
+  background-color: transparent;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+.custom-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+  color: #888;
+  padding: 0 0.5rem;
+}
+
+.custom-breadcrumb .breadcrumb-item a {
+  color: black; 
+  text-decoration: none;
+}
+
+.custom-breadcrumb .breadcrumb-item a:hover {
+  color: #ffb6c1;
+  text-decoration: underline;
+}
+
+.custom-breadcrumb .breadcrumb-item.active {
+  color: #555;
+  font-weight: 500;
+}
+
+.checklist-container {
+  height: 60vh;
+}
+
+.sidebar-scroll {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 8px;
+  border-radius: 1rem
+}
+
+.task-card {
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #ddd;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.task-card:hover {
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+.task-card input[type="number"],
+.task-card select {
+  border-radius: 0.5rem;
+  box-shadow: none;
+}
+
+.task-card .btn-outline-primary {
+  border-radius: 0.5rem;
+}
+
+
+/* PAGINA ASSIGN ACCESS */
+
+.access-wrapper {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 1.5rem;
+    padding: 2rem 3rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+    margin: auto;
+}
+
+.access-wrapper h2 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #222;
+}
+
+.access-wrapper label {
+    font-weight: 600;
+    color: #333;
+}
+
+.access-wrapper .form-control,
+.access-wrapper .form-select {
+    border-radius: 0.6rem;
+}
+
+.access-wrapper .form-control:focus,
+.access-wrapper .form-select:focus {
+    border-color: #ffc0cb;
+    box-shadow: 0 0 0 0.1rem rgba(255, 182, 193, 0.25);
+}
+
+.btn-access {
+    background-color: #007bff;
+    color: white;
+    border-radius: 0.6rem;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+}
+
+.btn-access:hover {
+    background-color: #0056b3;
+}
+
+.access-table {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.access-table thead {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.access-table td {
+    vertical-align: middle;
+}
