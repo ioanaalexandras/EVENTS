@@ -2,3 +2,36 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+// =========================
+// 🔹 Section: Modale Bootstrap
+// =========================
+function initUploadModal() {
+    const uploadModal = document.getElementById('uploadModal');
+    if (uploadModal) {
+        uploadModal.addEventListener('show.bs.modal', event => {
+            const button = event.relatedTarget;
+            const taskId = button.getAttribute('data-task-id');
+            const taskName = button.getAttribute('data-task-name');
+
+            uploadModal.querySelector('.modal-title').textContent = `Încarcă poză pentru: ${taskName}`;
+            uploadModal.querySelector('#uploadTaskId').value = taskId;
+        });
+    }
+}
+
+// =========================
+// 🔹 Section: Efecte UI (ex: toasturi, scroll, tooltips)
+// =========================
+// function initTooltips() { ... }
+// function initToasts() { ... }
+
+
+// =========================
+// 🔹 Section: Inițializare globală
+// =========================
+document.addEventListener('DOMContentLoaded', function () {
+    initUploadModal();
+    // initTooltips();
+    // initToasts();
+});
+

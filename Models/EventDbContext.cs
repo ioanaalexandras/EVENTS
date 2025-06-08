@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using RazorPagesEvents.Models;
 
 namespace RazorPagesEvents.Models;
 
@@ -27,7 +28,9 @@ public partial class EventDbContext : IdentityDbContext<IdentityUser>
 
     public virtual DbSet<Moneda> Moneda { get; set; }
 
-    public virtual DbSet<PhotoGallery> PhotoGalleries { get; set; }
+    public virtual DbSet<PhotoGallery> PhotoGallery { get; set; }
+
+    public virtual DbSet<FavoritePhoto> FavoritePhotos { get; set;}
 
     public virtual DbSet<Status> Statuses { get; set; }
 

@@ -75,10 +75,10 @@
                                         <span class="text-muted">@ViewData["MonedaSimbol"]</span>
                                     </div>
 
-                                    @if (Model.CanAssignRoles)
-                                    {
-                                        <!-- Dropdown + Buton Atribuie -->
-                                        <div class="mt-2 d-flex align-items-center gap-2 flex-wrap">
+                                    <div class="mt-2 d-flex align-items-center gap-2 flex-wrap">
+                                        @* ✅ Doar Adminul vede dropdownul și butonul de atribuire *@
+                                        @if (Model.CanAssignRoles)
+                                        {
                                             <select name="UserId_@task.Id" class="form-select form-select-sm" style="min-width: 200px;">
                                                 <option value="">Fără utilizator</option>
                                                 @foreach (var user in Model.EventUsersWithAccess)
@@ -93,6 +93,33 @@
                                                     name="action" value="assign_@task.Id">
                                                 Atribuie
                                             </button>
+                                        }
+
+                                        @* ✅ Toți utilizatorii (inclusiv Asistenți/Manageri) pot încărca poză *@
+                                        <button type="button"
+                                                class="btn btn-sm btn-outline-success mt-2"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#uploadModal"
+                                                data-task-id="@task.Id"
+                                                data-task-name="@task.Task.Description">
+                                            📸 Încarcă poză
+                                        </button>
+                                    </div>
+
+
+                                    @if (Model.PhotosByTask.ContainsKey(task.Id))
+                                    {
+                                        <div class="mt-3">
+                                            @foreach (var photo in Model.PhotosByTask[task.Id])
+                                            {
+                                                <div class="mb-2 d-flex flex-column align-items-start">
+                                                    <img src="@photo.Image" alt="Poză task" class="img-thumbnail mb-2" width="150" />
+                                                    @if (!string.IsNullOrWhiteSpace(photo.Description))
+                                                    {
+                                                        <span class="small text-muted">@photo.Description</span>
+                                                    }
+                                                </div>
+                                            }
                                         </div>
                                     }
                                 </div>
@@ -108,6 +135,42 @@
                     </button>
                 </div>
             </form>
+
+            <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <form method="post" enctype="multipart/form-data" asp-page-handler="UploadPhoto">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="uploadModalLabel">Încarcă poză pentru task</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <input type="hidden" id="uploadTaskId" name="eventTaskId" />
+                                <input type="hidden" name="EventId" value="@Model.EventId" />
+                                <input type="hidden" name="SelectedCategory" value="@Model.SelectedCategory" />
+
+                                <div class="mb-3">
+                                    <label class="form-label">Fișier imagine:</label>
+                                    <input type="file" name="photoFile" accept="image/*" class="form-control" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Descriere (opțional):</label>
+                                    <input type="text" name="description" class="form-control" />
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" name="isPublic" value ="true" class="form-check-input" id="isPublicCheck" />
+                                    <label class="form-check-label" for="isPublicCheck">Fă poza publică</label>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Încarcă</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
         </div>
     </div>

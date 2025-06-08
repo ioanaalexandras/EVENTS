@@ -42,6 +42,8 @@ public class ChecklistModel : PageModel
     [BindProperty]
     public string? UserId { get; set; }
 
+    public Dictionary<int, List<PhotoGallery>> PhotosByTask { get; set; } = new();
+
     public async System.Threading.Tasks.Task OnGetAsync()
     {
         var currentUserId = _userManager.GetUserId(User);
@@ -105,7 +107,7 @@ public class ChecklistModel : PageModel
         {
             TasksByCategory = new(); // fallback dacă nu există taskuri deloc
         }
-        
+
         // Lista utilizatori pentru dropdown (doar pentru creator)
         if (isOwner)
         {
@@ -114,6 +116,17 @@ public class ChecklistModel : PageModel
                 .Where(a => a.EventId == EventId)
                 .ToListAsync();
         }
+
+        var taskIds = EventTasks.Select(et => et.Id).ToList();
+
+        var allPhotos = await _context.PhotoGallery
+            .Where(p => taskIds.Contains(p.EventTaskId) &&
+                    (p.IsPublic || p.UserId == currentUserId || p.EventTask.UserId == currentUserId || isOwner)) // vezi doar poze proprii sau publice
+            .ToListAsync();
+
+        PhotosByTask = allPhotos
+            .GroupBy(p => p.EventTaskId)
+            .ToDictionary(g => g.Key, g => g.ToList());
     }
 
     public async Task<IActionResult> OnPostAsync(List<int> doneTaskIds, List<int> CostTaskIds, List<decimal> CostValues)
@@ -158,6 +171,46 @@ public class ChecklistModel : PageModel
 
         }
         return RedirectToPage(new { EventId = this.EventId, SelectedCategory = this.SelectedCategory });
-    
+
     }
+    
+    public async Task<IActionResult> OnPostUploadPhotoAsync(IFormFile photoFile, int eventTaskId, string? description, bool isPublic, int EventId, string? SelectedCategory)
+    {
+        this.EventId = EventId;
+        this.SelectedCategory = SelectedCategory;
+
+        if (photoFile == null || photoFile.Length == 0)
+        {
+            TempData["StatusMessage"] = "⚠️ Fișierul este invalid.";
+            await OnGetAsync(); // ca să reîncarci pagina corect
+            return Page();
+        }
+
+        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(photoFile.FileName);
+        var savePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", fileName);
+
+        using (var stream = new FileStream(savePath, FileMode.Create))
+        {
+            await photoFile.CopyToAsync(stream);
+        }
+
+        var photo = new PhotoGallery
+        {
+            EventTaskId = eventTaskId,
+            Image = "/images/" + fileName,
+            Description = description,
+            IsPublic = isPublic,
+            UserId = _userManager.GetUserId(User),
+        };
+
+        _context.PhotoGallery.Add(photo);
+        await _context.SaveChangesAsync();
+
+        // 🔄 Reîncarcă tot conținutul paginii ca să fie vizibile și noile poze
+        await OnGetAsync();
+
+        TempData["StatusMessage"] = "✅ Poză încărcată cu succes!";
+        return Page(); // NU folosi RedirectToPage aici!
+    }
+
 }

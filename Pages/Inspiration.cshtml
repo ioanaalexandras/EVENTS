@@ -1,0 +1,72 @@
+@page
+@model RazorPagesEvents.Pages.InspirationModel
+@{
+    ViewData["Title"] = "InspirationModel";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center fw-bold">📸 Galerie de Inspirație</h2>
+
+    <!-- Filtrare -->
+    <form method="get" class="row mb-4 g-2 justify-content-center">
+        <div class="col-md-3">
+            <select name="SelectedEventType" class="form-select rounded-pill shadow-sm border-0 px-3 py-2" onchange="this.form.submit()">
+                <option value="">-- Tip eveniment --</option>
+                @foreach (var type in Model.AvailableEventTypes)
+                {
+                    <option value="@type" selected="@(type == Model.SelectedEventType)">@type</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select name="SelectedCategory" class="form-select rounded-pill shadow-sm border-0 px-3 py-2" onchange="this.form.submit()">
+                <option value="">-- Categorie --</option>
+                @foreach (var cat in Model.AvailableCategories)
+                {
+                    <option value="@cat" selected="@(cat == Model.SelectedCategory)">@cat</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-auto d-flex align-items-center">
+            <form method="get" class="me-2">
+                <input type="hidden" name="ShowFavorites" value="true" />
+                <button type="submit" class="border-0 bg-transparent p-0" title="Vezi doar favorite">
+                    <i class="fas fa-heart text-danger fs-4"></i>
+                </button>
+            </form>
+
+            @if (Model.ShowFavorites)
+            {
+                <a asp-page="./Inspiration" class="border-0 bg-transparent p-0 ms-3" title="Afișează toate pozele">
+                    <i class="bi bi-columns-gap fs-4 text-secondary"></i>
+                </a>
+            }
+        </div>
+    </form>
+
+    <!-- Galerie poze -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        @foreach (var photo in Model.PublicPhotos)
+        {
+            <div class="col">
+                <div class="inspo-card position-relative overflow-hidden">
+                    <img src="@photo.Image" class="img-fluid rounded inspo-image" alt="poza publică" />
+
+                    <div class="overlay-info">
+                        <p class="mb-1 fw-bold">@photo.EventType • @photo.Category</p>
+                        <small>Postat de: @photo.User?.Email</small>
+
+                        <form method="post" asp-page-handler="ToggleFavorite" asp-route-photoId="@photo.Id.ToString()" class="mt-2">
+                            <button type="submit" class="btn btn-sm border-0 bg-transparent">
+                                <i class="fas fa-heart @(Model.FavoritePhotoIds.Contains(photo.Id) ? "text-danger" : "text-white")"></i>
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>

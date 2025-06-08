@@ -323,7 +323,6 @@ C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\v0zgf
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\yfc7ypekbg-mlv21k5csn.gz
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\3wit1fsjxw-t9e8v1slul.gz
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\jop5bg8k9h-61n19gt1b8.gz
-C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\i330kvplem-xtxxf3hu2r.gz
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\0y8qai2k95-agp80tu62r.gz
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\f5bka84lb1-st1cbwfwo5.gz
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\hm669vorrg-unj9p35syc.gz
@@ -392,4 +391,6 @@ C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\refint\RazorPage
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\RazorPagesEvents.pdb
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\RazorPagesEvents.genruntimeconfig.cache
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\ref\RazorPagesEvents.dll
-C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\xuj4o3qji2-ut0awtu2fa.gz
+C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\RazorPagesEvents.sourcelink.json
+C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\i330kvplem-vyskfxmytm.gz
+C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\xuj4o3qji2-a8wjqleypi.gz

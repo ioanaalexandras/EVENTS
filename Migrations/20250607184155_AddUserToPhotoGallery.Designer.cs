@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RazorPagesEvents.Models;
 
@@ -11,9 +12,11 @@ using RazorPagesEvents.Models;
 namespace RazorPagesEvents.Migrations
 {
     [DbContext(typeof(EventDbContext))]
-    partial class EventDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250607184155_AddUserToPhotoGallery")]
+    partial class AddUserToPhotoGallery
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -380,30 +383,6 @@ namespace RazorPagesEvents.Migrations
                     b.ToTable("UserAccesses");
                 });
 
-            modelBuilder.Entity("RazorPagesEvents.Models.FavoritePhoto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<Guid>("PhotoGalleryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PhotoGalleryId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("FavoritePhotos");
-                });
-
             modelBuilder.Entity("RazorPagesEvents.Models.Moneda", b =>
                 {
                     b.Property<int>("Id")
@@ -680,25 +659,6 @@ namespace RazorPagesEvents.Migrations
                         .IsRequired();
 
                     b.Navigation("Event");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("RazorPagesEvents.Models.FavoritePhoto", b =>
-                {
-                    b.HasOne("RazorPagesEvents.Models.PhotoGallery", "PhotoGallery")
-                        .WithMany()
-                        .HasForeignKey("PhotoGalleryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PhotoGallery");
 
                     b.Navigation("User");
                 });
