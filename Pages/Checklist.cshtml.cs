@@ -174,36 +174,39 @@ public class ChecklistModel : PageModel
 
     }
     
-    public async Task<IActionResult> OnPostUploadPhotoAsync(IFormFile photoFile, int eventTaskId, string? description, bool isPublic, int EventId, string? SelectedCategory)
+    public async Task<IActionResult> OnPostUploadPhotoAsync(List<IFormFile> photoFiles, int eventTaskId, string? description, bool isPublic, int EventId, string? SelectedCategory)
     {
         this.EventId = EventId;
         this.SelectedCategory = SelectedCategory;
 
-        if (photoFile == null || photoFile.Length == 0)
+        if (photoFiles == null || photoFiles.Count == 0)
         {
             TempData["StatusMessage"] = "⚠️ Fișierul este invalid.";
             await OnGetAsync(); // ca să reîncarci pagina corect
             return Page();
         }
 
-        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(photoFile.FileName);
-        var savePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", fileName);
-
-        using (var stream = new FileStream(savePath, FileMode.Create))
+        foreach (var file in photoFiles)
         {
-            await photoFile.CopyToAsync(stream);
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            var savePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", fileName);
+
+            using (var stream = new FileStream(savePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            var photo = new PhotoGallery
+            {
+                EventTaskId = eventTaskId,
+                Image = "/images/" + fileName,
+                Description = description,
+                IsPublic = isPublic,
+                UserId = _userManager.GetUserId(User),
+            };
+            _context.PhotoGallery.Add(photo);
         }
 
-        var photo = new PhotoGallery
-        {
-            EventTaskId = eventTaskId,
-            Image = "/images/" + fileName,
-            Description = description,
-            IsPublic = isPublic,
-            UserId = _userManager.GetUserId(User),
-        };
-
-        _context.PhotoGallery.Add(photo);
         await _context.SaveChangesAsync();
 
         // 🔄 Reîncarcă tot conținutul paginii ca să fie vizibile și noile poze
