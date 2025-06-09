@@ -112,11 +112,20 @@
                                         <div class="mt-3">
                                             @foreach (var photo in Model.PhotosByTask[task.Id])
                                             {
-                                                <div class="mb-2 d-flex flex-column align-items-start">
-                                                    <img src="@photo.Image" alt="Poză task" class="img-thumbnail mb-2" width="150" />
+                                                <div class="mb-2 position-relative d-inline-block">
+                                                    <img src="@photo.Image" alt="Poză task" class="img-thumbnail" width="150" />
+
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-danger rounded-circle position-absolute top-0 end-0"
+                                                        title="Șterge"
+                                                        style="width: 24px; height: 24px; line-height: 10px; padding: 0;"
+                                                        onclick="submitDeletePhoto('@photo.Id')">
+                                                            &times;
+                                                    </button>
+
                                                     @if (!string.IsNullOrWhiteSpace(photo.Description))
                                                     {
-                                                        <span class="small text-muted">@photo.Description</span>
+                                                        <div class="small text-muted mt-1">@photo.Description</div>
                                                     }
                                                 </div>
                                             }
@@ -171,6 +180,12 @@
                     </form>
                 </div>
             </div>
+
+            <form id="deletePhotoForm" method="post" asp-page-handler="DeletePhoto" style="display: none;">
+                <input type="hidden" name="photoId" id="deletePhotoId" />
+                <input type="hidden" name="EventId" value="@Model.EventId" />
+                <input type="hidden" name="SelectedCategory" value="@Model.SelectedCategory" />
+            </form>
 
         </div>
     </div>

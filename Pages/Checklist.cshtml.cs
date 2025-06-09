@@ -173,7 +173,7 @@ public class ChecklistModel : PageModel
         return RedirectToPage(new { EventId = this.EventId, SelectedCategory = this.SelectedCategory });
 
     }
-    
+
     public async Task<IActionResult> OnPostUploadPhotoAsync(List<IFormFile> photoFiles, int eventTaskId, string? description, bool isPublic, int EventId, string? SelectedCategory)
     {
         this.EventId = EventId;
@@ -215,5 +215,48 @@ public class ChecklistModel : PageModel
         TempData["StatusMessage"] = "✅ Poză încărcată cu succes!";
         return Page(); // NU folosi RedirectToPage aici!
     }
+    
+    public async Task<IActionResult> OnPostDeletePhotoAsync(Guid photoId, int EventId, string? SelectedCategory)
+    {
+        this.EventId = EventId;
+        this.SelectedCategory = SelectedCategory;
+
+        var photo = await _context.PhotoGallery
+            .FirstOrDefaultAsync(p => p.Id == photoId);
+
+        if (photo != null)
+        {
+            // 1. Șterge fișierul de pe disc
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", (photo.Image ?? "").TrimStart('/'));
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
+
+            // 2. Șterge din DB
+            if (photo.IsPublic)
+            {
+                var duplicatePhotos = await _context.PhotoGallery
+                    .Where(p => p.Image == photo.Image)
+                    .ToListAsync();
+
+                _context.PhotoGallery.RemoveRange(duplicatePhotos);
+            }
+            else
+            {
+                _context.PhotoGallery.Remove(photo);
+            }
+
+
+            // 3. Dacă poza era publică, se va elimina și implicit din Inspiration (căci se baza pe acea tabelă)
+            await _context.SaveChangesAsync();
+
+            TempData["StatusMessage"] = "🗑️ Fotografia a fost ștearsă!";
+        }
+
+        await OnGetAsync();
+        return Page();
+    }
+
 
 }

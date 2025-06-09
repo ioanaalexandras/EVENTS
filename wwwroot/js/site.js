@@ -19,6 +19,17 @@ function initUploadModal() {
     }
 }
 
+function submitDeletePhoto(photoId) {
+    const form = document.getElementById('deletePhotoForm');
+    const input = document.getElementById('deletePhotoId');
+    
+    if (form && input) {
+        input.value = photoId;
+        form.submit();
+    }
+}
+
+
 // =========================
 // 🔹 Section: Efecte UI (ex: toasturi, scroll, tooltips)
 // =========================
