@@ -138,9 +138,12 @@
                                     <a class="btn btn-outline-secondary btn-sm" asp-page="./MyEvents" asp-route-ShowEditForm="@ev.Id">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
-                                    <a class="btn btn-outline-danger btn-sm" href="/DeleteEvent?id=@ev.Id">
-                                        <i class="fas fa-trash"></i> Delete
-                                    </a>
+                                    <form method="post" asp-page-handler="Delete" class="d-inline" onsubmit="return confirm('Ești sigur că vrei să ștergi acest eveniment?');">
+                                        <input type="hidden" name="DeleteEvent" value="@ev.Id" />
+                                        <button type="submit" class="btn btn-outline-danger btn-sm">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </button>
+                                    </form>
                                     <a class="btn btn-outline-primary btn-sm" href="/Checklist?eventId=@ev.Id">
                                         <i class="fas fa-list-check"></i> Continuă
                                     </a>

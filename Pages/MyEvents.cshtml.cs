@@ -56,7 +56,6 @@ public class MyEventsModel : PageModel
     [BindProperty(SupportsGet = true)]
     public DateTime? StartDateTo { get; set; }
     public List<string> AllEventTypes { get; set; } = new();
-
     public async System.Threading.Tasks.Task OnGetAsync()
     {
         var userId = _userManager.GetUserId(User);
@@ -151,22 +150,46 @@ public class MyEventsModel : PageModel
 
     public async Task<IActionResult> OnPostDeleteAsync()
     {
+        
         var ev = await _context.Events
             .Include(e => e.EventTasks)
+            .ThenInclude(t => t.PhotoGalleries)
             .FirstOrDefaultAsync(e => e.Id == DeleteEvent);
 
         if (ev != null)
         {
-            // 1. Ștergi mai întâi taskurile
+            // 1. Șterge toate pozele asociate taskurilor
+            var taskIds = ev.EventTasks.Select(t => t.Id).ToList();
+            var photos = await _context.PhotoGallery
+                .Where(p => taskIds.Contains(p.EventTaskId))
+                .ToListAsync();
+
+            foreach (var photo in photos)
+            {
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", (photo.Image ?? "").TrimStart('/'));
+                if (System.IO.File.Exists(path))
+                    System.IO.File.Delete(path);
+            }
+
+            _context.PhotoGallery.RemoveRange(photos);
+
+            // 2. Șterge toate atribuțiile de colaboratori (UserAccess)
+            var accesses = await _context.UserAccesses
+                .Where(a => a.EventId == DeleteEvent)
+                .ToListAsync();
+            _context.UserAccesses.RemoveRange(accesses);
+
+            // 3. Șterge taskurile
             _context.EventTasks.RemoveRange(ev.EventTasks);
 
-            // 2. Apoi ștergi evenimentul
+            // 4. Șterge evenimentul propriu-zis
             _context.Events.Remove(ev);
 
             await _context.SaveChangesAsync();
         }
 
         return RedirectToPage();
+            
     }
 
     public async Task<IActionResult> OnPostRevokeAccessAsync()

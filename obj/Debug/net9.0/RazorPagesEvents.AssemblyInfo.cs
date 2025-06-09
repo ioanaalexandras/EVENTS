@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RazorPagesEvents")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+adb6226aa5071467c77d79252cba69328dde2e6e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4b31863b0d5980ec4ab8f692cbbea20be393f518")]
 [assembly: System.Reflection.AssemblyProductAttribute("RazorPagesEvents")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RazorPagesEvents")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
