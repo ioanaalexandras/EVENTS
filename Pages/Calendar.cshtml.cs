@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Identity;
 using RazorPagesEvents.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace RazorPagesEvents.Pages
 {
@@ -15,6 +16,10 @@ namespace RazorPagesEvents.Pages
             _context = context;
             _userManager = userManager;
         }
+
+        [BindProperty(SupportsGet = true)]
+        public string? SearchTerm { get; set; }
+
 
         public List<object> Events { get; set; } = new();
         public List<Event> UpcomingEvents { get; set; } = new();
@@ -30,10 +35,17 @@ namespace RazorPagesEvents.Pages
                     e.UserAccesses.Any(a => a.UserId == userId)) // are acces la eveniment
                 .Where(e => e.StartDate.HasValue);
 
+            if (!string.IsNullOrWhiteSpace(SearchTerm))
+            {
+                eventsQuery = eventsQuery
+                    .Where(e => e.Description != null && e.Description.Contains(SearchTerm));
+            }
+
             // Calendar
             Events = await eventsQuery
                 .Select(e => new
                 {
+                    id =e.Id,
                     title = e.Description ?? "Fără titlu",
                     start = e.StartDate!.Value.ToString("yyyy-MM-dd"),
                     allDay = true

@@ -29,7 +29,7 @@
                 {
                     var isActive = category == selectedCategory;
                     <li class="nav-item mb-2">
-                        <a class="nav-link @(isActive ? "fw-bold text-primary" : "text-dark")"
+                        <a class="nav-link @(isActive ? "fw-bold text-dark" : "text-dark")"
                            href="?eventId=@Model.EventId&SelectedCategory=@category">
                             @category
                         </a>
@@ -45,7 +45,7 @@
 
                 @if (Model.TotalCost > 0)
                 {
-                    <div class="alert alert-info text-center fw-bold">
+                    <div class="alert alert-light text-center fw-bold">
                         💰 Cost total estimativ: @Model.TotalCost.ToString("N2") @ViewData["MonedaSimbol"]
                     </div>
                 }
@@ -69,7 +69,7 @@
                                         </label>
 
                                         <!-- Cost -->
-                                        <input type="number" name="CostValues" step="0.01" value="@(task.Cost?.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture) ?? "0")""
+                                        <input type="number" name="CostValues" step="0.01" value="@(task.Cost?.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture) ?? "0")"
                                             class="form-control ms-2 me-1" style="width: 100px;" />
                                         <input type="hidden" name="CostTaskIds" value="@task.Id" />
                                         <span class="text-muted">@ViewData["MonedaSimbol"]</span>
@@ -89,7 +89,7 @@
                                                 }
                                             </select>
 
-                                            <button type="submit" class="btn btn-sm btn-outline-primary"
+                                            <button type="submit" class="btn btn-sm btn-outline-dark btn-add-event"
                                                     name="action" value="assign_@task.Id">
                                                 Atribuie
                                             </button>
@@ -97,7 +97,7 @@
 
                                         @* ✅ Toți utilizatorii (inclusiv Asistenți/Manageri) pot încărca poză *@
                                         <button type="button"
-                                                class="btn btn-sm btn-outline-primary"
+                                                class="btn btn-sm btn-outline-dark btn-add-event"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#uploadModal"
                                                 data-task-id="@task.Id"
@@ -139,7 +139,7 @@
 
                 <!-- Butonul mare pentru salvarea statusurilor și costurilor -->
                 <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-primary px-4 py-2" name="action" value="save">
+                    <button type="submit" class="btn btn-outline-dark px-4 py-2" name="action" value="save">
                         💾 Salvează modificările
                     </button>
                 </div>

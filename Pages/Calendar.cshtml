@@ -11,18 +11,20 @@
     <div class="row">
         <!-- Sidebar -->
         <div class="col-md-3 col-lg-2 calendar-sidebar">
-            <h4 class="fw-bold">Event Tools</h4>
+            <h4 class="fw-bold text-center">Event Tools</h4>
 
-            <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Search events..." />
-            </div>
+            <form method="get">
+                <div class="mb-3">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search events..." value="@Model.SearchTerm" />
+                </div>
 
-            <div class="mb-3 d-grid gap-2">
-                <button class="btn btn-outline-dark">Search</button>
-                <button class="btn btn-dark btn-add-event">Add Event</button>
-            </div>
+                <div class="mb-3 d-grid gap-2">
+                    <button type="button" class="btn btn-outline-dark btn-add-event" id="btnSearch">Search</button>
+                </div>
+            </form>
 
-            <h5 class="fw-bold mt-4">Upcoming Events</h5>
+
+            <h5 class="fw-bold mt-4 text-center">Upcoming Events</h5>
             @if (Model.UpcomingEvents.Any())
             {
                 <ul class="list-group">

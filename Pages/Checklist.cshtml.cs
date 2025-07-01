@@ -135,7 +135,7 @@ public class ChecklistModel : PageModel
         if (action == "save")
         {
             var tasksToUpdate = await _context.EventTasks
-            .Where(et => et.EventId == EventId)
+            .Where(et => doneTaskIds.Contains(et.Id))
             .ToListAsync();
 
             foreach (var task in tasksToUpdate)

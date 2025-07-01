@@ -259,6 +259,17 @@ body {
   border-radius: 0.5rem;
 }
 
+.check-toggle {
+    cursor: pointer;
+    color: #ffb6c1; /* roz pastel */
+    transition: transform 0.2s ease;
+}
+
+.check-toggle.checked {
+    color: #ff69b4; /* roz mai intens la bifare */
+    transform: scale(1.2);
+}
+
 
 /* PAGINA ASSIGN ACCESS */
 
@@ -473,10 +484,18 @@ body {
     white-space: normal !important;
     overflow: visible !important;
     text-overflow: unset !important;
-    display: inline-block !important;
     max-width: 100% !important;
     line-height: 1.2;
     word-wrap: break-word;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 10px;
+}
+
+
+.fc-event:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 10px #2c2c2c;
+    cursor: pointer;
 }
 
 .fc .fc-scrollgrid {
