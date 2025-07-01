@@ -1,11 +1,4 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
-// =========================
-// 🔹 Section: Modale Bootstrap
-// =========================
-function initUploadModal() {
+﻿function initUploadModal() {
     const uploadModal = document.getElementById('uploadModal');
     if (uploadModal) {
         uploadModal.addEventListener('show.bs.modal', event => {
@@ -29,20 +22,27 @@ function submitDeletePhoto(photoId) {
     }
 }
 
-
-// =========================
-// 🔹 Section: Efecte UI (ex: toasturi, scroll, tooltips)
-// =========================
-// function initTooltips() { ... }
-// function initToasts() { ... }
-
-
-// =========================
-// 🔹 Section: Inițializare globală
-// =========================
 document.addEventListener('DOMContentLoaded', function () {
-    initUploadModal();
-    // initTooltips();
-    // initToasts();
+    var calendarEl = document.getElementById('calendar');
+    if (!calendarEl || typeof calendarEventsFromServer === 'undefined') return; // Nu face nimic dacă nu e pe pagina Calendar
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        firstDay: 1,
+        showNonCurrentDates: false,
+        height: 'auto',
+        headerToolbar: {
+            left: 'today',
+            center: 'title',
+            right: 'prev,next'
+        },
+        events: calendarEventsFromServer, // variabilă globală definită în Razor
+        eventColor: '#ffb6c1',
+        eventTextColor: '#000000',
+        eventDisplay: 'block'
+    });
+
+    calendar.render();
 });
+
 

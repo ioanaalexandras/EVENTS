@@ -392,5 +392,9 @@ C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\RazorPagesEvents
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\RazorPagesEvents.genruntimeconfig.cache
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\ref\RazorPagesEvents.dll
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\RazorPagesEvents.sourcelink.json
-C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\xuj4o3qji2-a8wjqleypi.gz
-C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\i330kvplem-lc1091yil5.gz
+C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\rjimswa.dswa.cache.json
+C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\i330kvplem-2owek4bsrk.gz
+C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\xuj4o3qji2-ozx59f9l9w.gz

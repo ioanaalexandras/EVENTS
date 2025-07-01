@@ -356,3 +356,142 @@ body {
 .inspo-card:hover .overlay-info {
     opacity: 1;
 }
+
+/* PAGINA CALENDAR*/
+/* PAGINA CALENDAR */
+
+/* ------------------------- CALENDAR PAGE ------------------------- */
+
+.calendar {
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    min-height: 600px;
+    backdrop-filter: blur(4px);
+    margin-bottom: 40px;
+    margin-right: 0 !important;
+}
+
+.calendar-wrapper-custom {
+    max-width: 100%;
+    padding-left: 10cm;
+    padding-right: 10cm;
+}
+
+/* Colțuri rotunjite pentru Sidebar (doar stânga) */
+.calendar-sidebar {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+/* Colțuri rotunjite pentru Calendar (doar dreapta) */
+.calendar-main {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.fc {
+    background-color: transparent;
+    font-family: 'Georgia', serif;
+    color: #2c2c2c;
+}
+
+.fc-toolbar-title {
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+}
+
+.fc .fc-button {
+    background-color: #e37182 !important; /* roz pal */
+    border: none !important;
+}
+
+/* Stil personalizat DOAR pentru butonul Add Event */
+.btn-add-event {
+    background-color: #ffb6c1 !important;  /* rozul de la prev/next */
+    color: white !important;
+    border: none !important;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
+    border-radius: 8px;
+}
+
+.btn-add-event:hover {
+    background-color: #2c2c2c !important; /* mai închis la hover */
+}
+
+.fc-day-today {
+    background-color: #fff0f5 !important;
+    border: 1px solid #e2e2e2 !important;
+}
+
+.fc-day-other {
+    display: none; /* ascunde zilele din lunile anterioare/următoare */
+}
+
+.fc-daygrid-day {
+    background-color: #ffffff;
+    border: 1px solid #e2e2e2;
+    transition: background-color 0.3s;
+}
+
+/* Zilele calendarului – rotunjite */
+.fc-daygrid-day-frame {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+
+.fc-daygrid-day:hover {
+    background-color: #ffb6c1;
+}
+
+.fc-daygrid-day-number {
+    color: #2c2c2c;
+    font-weight: 500;
+    padding-right: 6px;
+    text-decoration: none !important;
+    border-bottom: none !important;
+}
+
+.fc-event {
+    background-color: #ffb6c1!important;
+    color: white !important;
+    font-weight: bold;
+    border: none;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    display: inline-block !important;
+    max-width: 100% !important;
+    line-height: 1.2;
+    word-wrap: break-word;
+}
+
+.fc .fc-scrollgrid {
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    width: 100% !important;
+}
+
+/* Zilele săptămânii – negru și elegant */
+.fc-col-header-cell-cushion {
+    color: black !important;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
+    text-decoration: none !important;
+    border-bottom: none !important;
+}
+
+

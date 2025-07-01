@@ -1,0 +1,61 @@
+@page
+@model CalendarModel
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "Calendar";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" rel="stylesheet" />
+
+<div class="calendar-wrapper-custom px-5 py-4">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 calendar-sidebar">
+            <h4 class="fw-bold">Event Tools</h4>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Search events..." />
+            </div>
+
+            <div class="mb-3 d-grid gap-2">
+                <button class="btn btn-outline-dark">Search</button>
+                <button class="btn btn-dark btn-add-event">Add Event</button>
+            </div>
+
+            <h5 class="fw-bold mt-4">Upcoming Events</h5>
+            @if (Model.UpcomingEvents.Any())
+            {
+                <ul class="list-group">
+                    @foreach (var ev in Model.UpcomingEvents)
+                    {
+                        <li class="list-group-item">
+                            <strong>@ev.Description</strong><br />
+                            <small class="text-muted">@ev.StartDate?.ToString("dd MMM yyyy")</small>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p class="text-danger fst-italic">Niciun eveniment găsit.</p>
+            }
+        </div>
+
+        <!-- Calendar -->
+        <div class="col-md-9 col-lg-10 calendar-main">
+            <div id="calendar"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+
+    <script>
+        var calendarEventsFromServer = @Html.Raw(JsonConvert.SerializeObject(Model.Events));
+    </script>
+
+    <script src="~/js/site.js"></script>
+}
+    
+
