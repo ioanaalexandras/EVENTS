@@ -20,6 +20,12 @@
             </div>
 
             <div class="mb-3">
+                <input type="date" class="form-control" id="StartDate" name="StartDate"
+                    value="@Model.StartDate?.ToString("Data evenimentului")" />
+            </div>
+
+
+            <div class="mb-3">
                 <select asp-for="SelecteazaMoneda" class="form-select">
                     <option value="">-- Alege moneda --</option>
                     @foreach (var moneda in Model.Monede)

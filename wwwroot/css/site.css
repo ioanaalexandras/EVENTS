@@ -111,6 +111,27 @@ body {
   font-size: 1.2rem;
 }
 
+.custom-pink {
+  background-color: #ffb6c1;
+}
+
+/* 🔸 Elimina conturul albastru pentru toate câmpurile focusate */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.form-control:focus,
+.btn:focus,
+.form-select:focus {
+    border-color: #f7a5c7;
+    box-shadow: none;
+}
+
+
 
 /* Stil pentru secțiuni tip card cu fundal transparent și margini rotunjite */
 .custom-card {
@@ -333,6 +354,7 @@ body {
 }
 
 /* PAGINA INSPIRATION*/
+
 .inspo-card {
     border-radius: 1rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);

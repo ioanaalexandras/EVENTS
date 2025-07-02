@@ -32,7 +32,7 @@
                 <!-- Formular filtrare -->
                 <form method="get" class="custom-filter-form mb-4">
                     <div class="row g-3 align-items-end">
-                        <div class="col-md-4">
+                        <div class="col-md-5 text-center">
                             <label for="FilterType" class="form-label">Tip eveniment</label>
                             <select name="FilterType" class="form-select">
                                 <option value="">Toate</option>
@@ -44,18 +44,13 @@
                                 }
                             </select>
                         </div>
-                        <div class="col-md-3">
-                            <label for="StartDateFrom" class="form-label">Data de la</label>
+                        <div class="col-md-5 text-center">
+                            <label for="StartDateFrom" class="form-label">Data eveniment</label>
                             <input type="date" name="StartDateFrom" class="form-control"
                                    value="@Model.StartDateFrom?.ToString("yyyy-MM-dd")" />
                         </div>
-                        <div class="col-md-3">
-                            <label for="StartDateTo" class="form-label">Data până la</label>
-                            <input type="date" name="StartDateTo" class="form-control"
-                                   value="@Model.StartDateTo?.ToString("yyyy-MM-dd")" />
-                        </div>
                         <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary w-100">🔍 Filtrează</button>
+                            <button type="submit" class="btn btn-dark w-100 btn-add-event">Filtrează</button>
                             <a href="/MyEvents" class="btn btn-outline-secondary w-100 mt-2">
                                 <i class="fa fa-refresh me-1" aria-hidden="true"></i> Reset
                             </a>
@@ -64,7 +59,7 @@
                 </form>
 
                 <div class="mb-3 text-end">
-                    <a href="/AssignAccess" class="btn btn-outline-success rounded-pill px-4">
+                    <a href="/AssignAccess" class="btn btn-outline-dark rounded-pill px-4">
                         <i class="fas fa-user-plus me-1"></i> Invita colaboratori
                     </a>
                 </div>
@@ -102,7 +97,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Progress</label>
                                     <div class="progress" style="height: 1rem;">
-                                        <div class="progress-bar bg-warning text-dark" role="progressbar"
+                                        <div class="progress-bar custom-pink text-dark" role="progressbar"
                                             style="width: @ev.Progress%;" aria-valuenow="@ev.Progress"
                                             aria-valuemin="0" aria-valuemax="100">
                                             @ev.Progress%
@@ -144,7 +139,7 @@
                                             <i class="fas fa-trash"></i> Delete
                                         </button>
                                     </form>
-                                    <a class="btn btn-outline-primary btn-sm" href="/Checklist?eventId=@ev.Id">
+                                    <a class="btn btn-outline-dark btn-sm" href="/Checklist?eventId=@ev.Id">
                                         <i class="fas fa-list-check"></i> Continuă
                                     </a>
                                 </div>
@@ -160,6 +155,7 @@
         </div>
 
         <!-- TAB 2: Evenimente la care am acces -->
+
         <div class="tab-pane fade" id="access-events" role="tabpanel" aria-labelledby="access-events-tab">
             @if (Model.EventsIAccess.Any())
             {
@@ -172,13 +168,13 @@
                                 <small>@ev.EventTypeName @ev.StartDate?.ToString("dd MMM yyyy")</small>
                             </p>
                             <p class="card-text">
-                                <span class="badge bg-info text-dark">Rol: @ev.Role</span>
+                                <span class="badge rounded-pill bg-dark">Rol: @ev.Role</span>
                             </p>
 
                             <div class="mb-3">
                                 <label class="form-label">Progresul meu</label>
                                 <div class="progress" style="height: 1rem;">
-                                    <div class="progress-bar bg-success" role="progressbar"
+                                    <div class="progress-bar custom-pink" role="progressbar"
                                         style="width: @ev.Progress%;" aria-valuenow="@ev.Progress"
                                         aria-valuemin="0" aria-valuemax="100">
                                         @ev.Progress%
@@ -187,7 +183,7 @@
                             </div>
 
                             <div class="d-flex justify-content-end">
-                                <a class="btn btn-outline-primary btn-sm" href="/Checklist?eventId=@ev.Id">
+                                <a class="btn btn-outline-dark btn-sm" href="/Checklist?eventId=@ev.Id">
                                     <i class="fas fa-list-check"></i> Continuă
                                 </a>
                             </div>

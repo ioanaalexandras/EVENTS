@@ -22,6 +22,10 @@ function submitDeletePhoto(photoId) {
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    initUploadModal();
+});
+
 let calendar;
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -82,5 +86,7 @@ function searchEvent() {
         alert("Evenimentul nu a fost găsit.");
     }
 }
+
+
 
 

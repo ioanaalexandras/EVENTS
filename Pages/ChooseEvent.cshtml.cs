@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesEvents.Models;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 public class ChooseEventModel : PageModel
 {
@@ -29,6 +30,10 @@ public class ChooseEventModel : PageModel
     public int SelecteazaMoneda { get; set; } 
     public List<Moneda> Monede { get; set; } = new();
 
+    [BindProperty]
+    [DataType(DataType.Date)]
+    public DateTime? StartDate { get; set; }
+
     public async System.Threading.Tasks.Task OnGetAsync()
     {
         EventTypes = await _context.EventTypes
@@ -52,8 +57,7 @@ public class ChooseEventModel : PageModel
         {
             EventTypeId = SelectedEventTypeId,
             Description = EventName,
-            StartDate = DateTime.Now,
-            EndDate = DateTime.Now.AddDays(1),
+            StartDate = StartDate,
             UserId = userId,
             MonedaId = SelecteazaMoneda
         };

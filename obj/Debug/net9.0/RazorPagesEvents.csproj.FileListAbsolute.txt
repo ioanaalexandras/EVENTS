@@ -379,8 +379,6 @@ C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\wke7x
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\hilc197se2-dd6z7egasc.gz
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\l9ty0479td-5pze98is44.gz
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\t9o9v8k621-mlv21k5csn.gz
-C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\x0k1en7tky-vymj0ryxg8.gz
-C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\ao1hocpwys-vymj0ryxg8.gz
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\staticwebassets.development.json
@@ -396,5 +394,7 @@ C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\rpswa.dswa.cache
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
-C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\xuj4o3qji2-tjvh9ajyau.gz
-C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\i330kvplem-svyak6m5lx.gz
+C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\xuj4o3qji2-fcws8360tm.gz
+C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\i330kvplem-97x7duwzc5.gz
+C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\x0k1en7tky-9f9rowmr2u.gz
+C:\Users\Oana\Desktop\LICENTA\RazorPagesEvents\obj\Debug\net9.0\compressed\ao1hocpwys-9f9rowmr2u.gz

@@ -179,6 +179,16 @@ public class ChecklistModel : PageModel
         this.EventId = EventId;
         this.SelectedCategory = SelectedCategory;
 
+        Console.WriteLine(">> Upload photo pentru EventTaskId = " + eventTaskId);
+
+        var validTask = await _context.EventTasks.FindAsync(eventTaskId);
+        if (validTask == null)
+        {
+            TempData["StatusMessage"] = $"⚠️ Taskul cu ID {eventTaskId} nu există.";
+            await OnGetAsync();
+            return Page();
+        }
+
         if (photoFiles == null || photoFiles.Count == 0)
         {
             TempData["StatusMessage"] = "⚠️ Fișierul este invalid.";
