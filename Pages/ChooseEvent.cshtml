@@ -21,7 +21,8 @@
 
             <div class="mb-3">
                 <input type="date" class="form-control" id="StartDate" name="StartDate"
-                    value="@Model.StartDate?.ToString("Data evenimentului")" />
+                    value="@Model.StartDate?.ToString("yyyy-MM-dd")"
+                    min="@DateTime.Today.ToString("yyyy-MM-dd")" />
             </div>
 
 

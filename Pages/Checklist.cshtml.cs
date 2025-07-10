@@ -135,8 +135,10 @@ public class ChecklistModel : PageModel
         if (action == "save")
         {
             var tasksToUpdate = await _context.EventTasks
-            .Where(et => doneTaskIds.Contains(et.Id))
+            .Include(et => et.Task).ThenInclude(t => t.TaskCategory)
+            .Where(et => et.EventId == this.EventId && et.Task.TaskCategory.Name == this.SelectedCategory)
             .ToListAsync();
+
 
             foreach (var task in tasksToUpdate)
             {
@@ -144,7 +146,8 @@ public class ChecklistModel : PageModel
                 var index = CostTaskIds.IndexOf(task.Id);
                 if (index >= 0 && index < CostValues.Count)
                 {
-                    task.Cost = CostValues[index];
+                    var valoare = CostValues[index];
+                    task.Cost = valoare < 0 ? 0 : valoare;
                 }
             }
             await _context.SaveChangesAsync();
